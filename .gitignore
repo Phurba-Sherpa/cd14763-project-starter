@@ -1,0 +1,4 @@
+# AgentCore build artifacts
+.bedrock_agentcore/
+starter/.bedrock_agentcore/
+*.zip
