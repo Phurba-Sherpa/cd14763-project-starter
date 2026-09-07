@@ -433,6 +433,8 @@ print(json.dumps(result))
                 "tier_discount_pct": tier_pct,
                 "tier_discount": round(tier_discount, 2),
                 "final_total": round(final_total, 2),
+                "points_redeemed": 0,
+                "remaining_points": loyalty_points,
                 "note": "Fallback calculation — points redemption skipped",
                 "error": str(e),
             }
@@ -551,7 +553,7 @@ async def invoke(payload, context=None):
         session_id=session_id,
     )
 
-    browser = AgentCoreBrowser(session_timeout=600)
+    browser = AgentCoreBrowser(region=REGION, session_timeout=600)
     local_tools = [search_knowledge_base, calculate_loyalty_discount, browser.browser]
 
     client = MCPClient(lambda: streamable_http_client(url=GATEWAY_URL))
